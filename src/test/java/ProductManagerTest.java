@@ -38,7 +38,7 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void productManagerTestSearch() {
+    public void productManagerSearchTwoTest() {
         manager.addProduct(smart1);
         manager.addProduct(smart2);
         manager.addProduct(book);
@@ -46,6 +46,31 @@ public class ProductManagerTest {
 
 
         Product[] expected = {smart1, smart2};
+        Product[] actual = manager.searchBy("Смартфон");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void productManagerSearchZeroProductTest() {
+        manager.addProduct(book);
+        manager.addProduct(book2);
+
+
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Смартфон");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void productManagerSearchOneProductTest() {
+        manager.addProduct(book);
+        manager.addProduct(book2);
+        manager.addProduct(smart2);
+
+
+        Product[] expected = {smart2};
         Product[] actual = manager.searchBy("Смартфон");
 
         Assertions.assertArrayEquals(expected, actual);
